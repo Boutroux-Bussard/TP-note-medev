@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="testAnt" default="all" basedir=".">
+	<description>This is a Hello World programm</description>
+	
+	<target name="all" depends="report-test, build, javadoc" />
+
+	<target name="checkDependencies" description="Check if dependencies are satisfied">
+		<property file="application.properties" />
+
+		<echo message="Source directory is ${src.location}" />
+		<echo message="Classes directory is ${classes.location}" />
+		<echo message="Javadoc directory is ${javadoc.location}" />
+
+		<mkdir dir="${classes.location}" />
+
+		<condition property="src.available">
+			<and>
+				<available file="${src.location}/main/java" type="dir" />
+				<available file="${classes.location}" type="dir" />
+			</and>
+		</condition>
+
+		<condition property="test.available">
+			<available file="${src.location}/test/java" type="dir" />
+		</condition>
+	</target>
+
+	<target name="compile-test" description="Compile test classes" depends="checkDependencies" if="test.available">
+		<mkdir dir="${build.classes.dir}" /> 
+
+		<javac srcdir="${src.location}" destDir="${build.classes.dir}" includeAntRunTime="false">
+			<classpath>
+				<fileset dir="${dependencies.dir}">
+					<include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+    <target name="run-test" description="Run test" depends="compile-test">	
+		<mkdir dir="${test.report.dir}" />
+
+		<junitlauncher>
+			<classpath path="${build.classes.dir}" />
+
+			<testclasses outputdir="${test.report.dir}">
+                <fileset dir="${build.classes.dir}">
+                    <include name="**/*Test.class"/>
+                </fileset>
+
+                <listener type="legacy-xml" sendSysOut="true" sendSysErr="true"/>
+            </testclasses>
+		</junitlauncher>
+	</target>
+
+	<target name="report-test" description="Generate the report of the tests" depends="run-test">
+		<junitreport todir="${test.report.dir}">
+            <fileset dir="${test.report.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${test.report.dir}/html"/>
+        </junitreport>
+	</target>
+
+	<target name="build" description="Build the application" depends="checkDependencies" if="src.available">
+		<echo message="Building the application" />
+
+		<javac srcdir="${src.location}/main/java" destDir="${classes.location}" includeAntRunTime="false">
+		</javac>
+
+		<mkdir dir="${jar.location}" />
+
+		<jar destfile="${jar.location}/${jar.name}" basedir="${classes.location}">
+			<manifest>
+				<attribute name="Main-Class" value="ecn.tp_note_medev.TP_note_medev"/>
+			</manifest>
+		</jar>
+
+		<echo message="Done !" />
+	</target>
+
+	<target name="javadoc" description="Create the JavaDoc of the project" depends="checkDependencies" if="src.available">
+		<mkdir dir="${javadoc.location}" />
+
+		<echo message="Generating the Javadoc..."/>
+
+		<javadoc sourcepath="${src.location}/main/java" destdir="${javadoc.location}"></javadoc>
+
+		<echo message="Done !" />
+	</target>
+</project>
