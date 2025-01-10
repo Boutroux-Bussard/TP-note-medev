@@ -42,7 +42,7 @@ public class ExampleTest {
     @Test
     public void testReturnThree() {
         System.out.println("returnThree");
-        Example instance = null;
+        Example instance = new Example(1);
         int expResult = 3;
         int result = instance.returnThree();
         assertEquals(expResult, result);
