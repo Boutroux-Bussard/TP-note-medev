@@ -42,14 +42,15 @@ public class Joueur {
      * @param dirY la direction horyzontale 0, 1 ou -1
      * @return true si on peut retourner qqch,  false sinon
      */
-    private Boolean isFlipPossible(int posX,int posY, int dirX, int dirY){
+    protected Boolean isFlipPossible(int posX,int posY, int dirX, int dirY){
         int newX=posX+dirX;
         int newY=posY+dirY;
         if(newX>0 && newX<8 && newY>0 && newX<8){
-            Pion newPion =partie.getPions()[newX][newY];
-            if(newPion!=null && Objects.equals(isBlack, newPion.isBlack())){
+            Pion newPion = partie.getPions()[newX][newY];
+            Pion oldPion = partie.getPions()[posX][posY];
+            if(newPion!=null && isBlack==newPion.isBlack() && oldPion!=null && isBlack!=oldPion.isBlack()){
                 return true;
-            }else if (newPion !=null){
+            }else if (newPion !=null && isBlack!=newPion.isBlack()){
                 return isFlipPossible(newX, newY, dirX, dirY);
             }
         }
