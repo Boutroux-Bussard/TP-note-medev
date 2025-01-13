@@ -87,6 +87,9 @@ public class PionTest {
         Pion pionBlanc = new Pion(false, partie);
         pionBlanc.reverse();
         assertEquals(pionBlanc.isBlack(), true);
+        Pion pionNoir = new Pion(true, partie);
+        pionNoir.reverse();
+        assertEquals(pionNoir.isBlack(), false);
     }
 
     /**
