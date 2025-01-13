@@ -50,6 +50,19 @@ public class Partie {
         this.pions = pions;
     }
     
+    /**
+     * Affiche le plateau puis appelle chaque joueur pour qu'il joue. 
+     * Verifie a la fin de chaque tour d'un joueur que la partie est finie. 
+     */
+    public void tourDeJeu(){
+        afficher();
+        // joueurNoir.jouer();
+        verifierFinDePartie();
+        afficher();
+        // joueurBlanc.jouer();
+        verifierFinDePartie();
+    }
+    
     
       
     /**
