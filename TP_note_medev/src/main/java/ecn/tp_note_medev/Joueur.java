@@ -5,7 +5,9 @@
 package ecn.tp_note_medev;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
+import java.util.Scanner;
 
 /**
  *
@@ -117,6 +119,35 @@ public class Joueur {
         int[] choix = new int[2];
         choix[0]=0;
         choix[1]=0;
+        ArrayList<String> colonnes = new ArrayList<String>(Arrays.asList("a", "b","c","d","e","f","g","h"));
+        
+        System.out.println("Où voulez vous placer un pion (choisissez parmi la liste suivante) ?");
+        // liste de positions possibles
+        for (int i=0; i<cases.size(); i++){
+            System.out.println(colonnes.get(cases.get(i)[0]) + cases.get(i)[1]);
+        }
+        Scanner lectureClavier = new Scanner(System.in);
+        boolean choixValable = false;
+        while (!choixValable){
+            
+            String choixJoueur =lectureClavier.nextLine();
+            choixJoueur = choixJoueur.toUpperCase();
+            
+            char columnChar = choixJoueur.charAt(0);
+            try{
+                choix[0] = colonnes.indexOf(columnChar);
+            }
+            catch(Exception e){
+                choixValable = false;
+            }
+            char lineChar = choixJoueur.charAt(1);
+            try{
+                choix[1] = Integer.parseInt(String.valueOf(lineChar));
+            }
+            catch(Exception e){
+                choixValable = false;
+            }
+        }
         return choix;
     }
     

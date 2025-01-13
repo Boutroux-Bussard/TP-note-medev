@@ -56,12 +56,12 @@ public class Partie {
      */
     public boolean tourDeJeu(){
         afficher();
-        // joueurNoir.jouer();
+        joueurNoir.jouer();
         if (verifierFinDePartie()){
             return true;
         }
         afficher();
-        // joueurBlanc.jouer();
+        joueurBlanc.jouer();
         if (verifierFinDePartie()){
             return true;
         }
