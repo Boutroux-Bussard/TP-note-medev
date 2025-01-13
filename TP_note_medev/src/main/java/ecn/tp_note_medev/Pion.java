@@ -12,21 +12,41 @@ public class Pion {
     private Boolean isBlack;
     private Partie partie;
 
-    public Pion(Boolean couleur, Partie partie) {
-        this.isBlack = couleur;
+    public Pion(Boolean isBlack, Partie partie) {
+        this.isBlack = isBlack;
         this.partie = partie;
     }
 
-    public Boolean getCouleur() {
+    public Boolean isBlack() {
         return isBlack;
     }
 
-    public void setCouleur(Boolean couleur) {
-        this.isBlack = couleur;
+    public void setIsBlack(Boolean isBlack) {
+        this.isBlack = isBlack;
     }
 
     public Partie getPartie() {
         return partie;
     }
     
+    /**
+     * retourne le pion sur son autre face
+     */
+    public void reverse(){
+        isBlack=!isBlack;
+    }
+    
+    
+    /**
+     * Place le pion dans la partie
+     * @param x l'indice de la ligne
+     * @param y l'indice de la colonne
+     */
+    public void placer(int x, int y){
+        if(x<0 || x>7 || y<0 || y>7){
+            System.out.println("sors des limites possibles");
+            return;
+        }
+        partie.getPions()[x][y]=this;
+    }
 }
