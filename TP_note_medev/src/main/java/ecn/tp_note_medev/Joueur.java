@@ -121,6 +121,36 @@ public class Joueur {
     }
     
     private void flipper(int x, int y){
+        for(int dirX=-1; dirX<2; dirX++){
+            for (int dirY=-1; dirY<2; dirY++){
+                if((dirX!=0 || dirY!=0)){
+                    flipperDirection(x, y, dirX, dirY);
+                }
+            }
+        }
+    }
+    
+    private Boolean flipperDirection(int x,int y, int dirX, int dirY){
+        int newX=x+dirX;
+        int newY=y+dirY;
         
+        if(newX<0 && newX>=8 && newY<0 && newX>=8){
+            return false;
+        }
+        
+        Pion newPion = partie.getPions()[newX][newY];
+        Pion oldPion = partie.getPions()[x][y];
+        
+        if(newPion!=null && isBlack==newPion.isBlack() && oldPion!=null && isBlack!=oldPion.isBlack()){
+            return true;
+        }else if (newPion !=null && isBlack!=newPion.isBlack()){
+            Boolean estFlippe = isFlipPossible(newX, newY, dirX, dirY);
+            if(estFlippe){
+                newPion.reverse();
+            }
+            return estFlippe;
+        }
+        
+        return false;
     }
 }
