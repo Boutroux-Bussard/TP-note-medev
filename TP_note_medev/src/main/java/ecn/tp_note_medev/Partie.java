@@ -19,6 +19,10 @@ public class Partie {
         joueurBlanc = new Joueur(this, false);
         joueurNoir = new Joueur(this, true);
         pions = new Pion[8][8];
+        pions[3][3] = new Pion(true, this);
+        pions[4][4] = new Pion(true, this);
+        pions[3][4] = new Pion(false, this);
+        pions[4][3] = new Pion(false, this);
     }
     
 
@@ -44,6 +48,32 @@ public class Partie {
 
     public void setPions(Pion[][] pions) {
         this.pions = pions;
+    }
+      
+    /**
+    * Affiche les toutes les cases avec un caractere adapte à l'element present sur la case
+    */ 
+    public void afficher(){
+        for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
+            System.out.println("");
+            for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
+                if (pions[indiceColonne][indiceLigne] == null){
+                    System.out.print(" " + "." + " ");
+                    continue;
+                }
+                Pion pionActuel = pions[indiceColonne][indiceLigne];
+                if (pionActuel != null){
+                    String couleur = "B";
+                    if (pionActuel.getCouleur()){
+                        couleur = "N";
+                    }
+                    System.out.print(" " + couleur + " ");
+                    continue;
+                }
+                System.out.print(" " + "." + " ");
+            }
+        }
+        System.out.println();
     }
     
 }

@@ -97,5 +97,32 @@ public class PartieTest {
         Pion[][] result = instance.getPions();
         assertEquals(pions, result);
     }
+
+    /**
+     * Test of getPions method, of class Partie.
+     */
+    @Test
+    public void testGetPions() {
+        System.out.println("getPions");
+        Partie instance = new Partie();
+        Pion[][] pions = new Pion[8][8];
+        pions[3][3] = new Pion(true, instance);
+        pions[4][4] = new Pion(true, instance);
+        pions[3][4] = new Pion(false, instance);
+        pions[4][3] = new Pion(false, instance);
+        instance.setPions(pions);
+        Pion[][] result = instance.getPions();
+        assertEquals(pions, result);
+    }
+
+    /**
+     * Test of afficher method, of class Partie.
+     */
+    @Test
+    public void testAfficher() {
+        System.out.println("afficher");
+        Partie instance = new Partie();
+        instance.afficher();
+    }
     
 }
