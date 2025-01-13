@@ -87,19 +87,24 @@ public class PionTest {
         Pion pionBlanc = new Pion(false, partie);
         pionBlanc.reverse();
         assertEquals(pionBlanc.isBlack(), true);
+        Pion pionNoir = new Pion(true, partie);
+        pionNoir.reverse();
+        assertEquals(pionNoir.isBlack(), false);
     }
 
     /**
      * Test of placer method, of class Pion.
      */
     @ParameterizedTest
-    @CsvSource({"0,0", "1,7", "2,5", "6,3"})
-    public void testPlacer(int x, int y) {
+    @CsvSource({"0,0, true", "1,7, true", "2,5, true", "6,3, true", "8,3, false", "6,-1, false"})
+    public void testPlacer(int x, int y, Boolean isPossible) {
         System.out.println("placer");
         Partie partie = new Partie();
         Pion instance = new Pion(true, partie);
-        instance.placer(x, y);
-        assertEquals(instance, partie.getPions()[x][y]);
+        instance.placer(x, y);  
+        if(isPossible){
+           assertEquals(instance, instance.getPartie().getPions()[x][y]); 
+        }        
     }
     
     
