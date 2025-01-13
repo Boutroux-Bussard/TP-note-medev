@@ -76,4 +76,14 @@ public class Partie {
         System.out.println();
     }
     
+    public boolean verifierFinDePartie(){
+        for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
+            for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
+                if (pions[indiceColonne][indiceLigne] == null){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

@@ -124,5 +124,28 @@ public class PartieTest {
         Partie instance = new Partie();
         instance.afficher();
     }
+
+    /**
+     * Test of verifierFinDePartie method, of class Partie.
+     */
+    @Test
+    public void testVerifierFinDePartie() {
+        System.out.println("verifierFinDePartie");
+        Partie instance = new Partie();
+        boolean expResult = false;
+        boolean result = instance.verifierFinDePartie();
+        assertEquals(expResult, result);
+        
+        Pion[][] pions = new Pion[8][8];
+        for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
+            for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
+                pions[indiceColonne][indiceLigne] = new Pion(true, instance);
+            }
+        }
+        instance.setPions(pions);
+        expResult = true;
+        result = instance.verifierFinDePartie();
+        assertEquals(expResult, result);
+    }
     
 }
