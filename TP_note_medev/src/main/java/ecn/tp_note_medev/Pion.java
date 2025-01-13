@@ -9,20 +9,20 @@ package ecn.tp_note_medev;
  * @author Quent
  */
 public class Pion {
-    private Boolean couleur;
+    private Boolean isBlack;
     private Partie partie;
 
     public Pion(Boolean couleur, Partie partie) {
-        this.couleur = couleur;
+        this.isBlack = couleur;
         this.partie = partie;
     }
 
     public Boolean getCouleur() {
-        return couleur;
+        return isBlack;
     }
 
     public void setCouleur(Boolean couleur) {
-        this.couleur = couleur;
+        this.isBlack = couleur;
     }
 
     public Partie getPartie() {

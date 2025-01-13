@@ -10,11 +10,11 @@ package ecn.tp_note_medev;
  */
 public class Joueur {
     private Partie partie;
-    private Boolean color;
+    private Boolean isBlack;
 
     public Joueur(Partie partie, Boolean color) {
         this.partie = partie;
-        this.color = color;
+        this.isBlack = color;
     }
 
     public Partie getPartie() {
@@ -22,7 +22,7 @@ public class Joueur {
     }
 
     public Boolean getColor() {
-        return color;
+        return isBlack;
     }
     
 }
