@@ -59,5 +59,18 @@ public class JoueurTest {
         Boolean result = instance.getColor();
         assertEquals(false, result);
     }
+
+    /**
+     * Test of getCanPlay method, of class Joueur.
+     */
+    @Test
+    public void testGetCanPlay() {
+        System.out.println("getCanPlay");
+        Partie partie = new Partie();
+        Joueur instance = new Joueur(partie, false);
+        Boolean expResult = true;
+        Boolean result = instance.getCanPlay();
+        assertEquals(expResult, result);
+    }
     
 }
