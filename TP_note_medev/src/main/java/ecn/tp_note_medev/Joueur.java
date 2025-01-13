@@ -4,6 +4,8 @@
  */
 package ecn.tp_note_medev;
 
+import java.util.Objects;
+
 /**
  *
  * @author Quent
@@ -29,5 +31,29 @@ public class Joueur {
 
     public Boolean getCanPlay() {
         return canPlay;
+    }
+    
+    
+    /**
+     * Fonction recursive qui teste si dans une direction donnée il est possible de retourner des pions
+     * @param posX la ligne actuelle
+     * @param posY la colonne actuelle
+     * @param dirX la direction verticale 0, 1 ou -1
+     * @param dirY la direction horyzontale 0, 1 ou -1
+     * @return true si on peut retourner qqch,  false sinon
+     */
+    protected Boolean isFlipPossible(int posX,int posY, int dirX, int dirY){
+        int newX=posX+dirX;
+        int newY=posY+dirY;
+        if(newX>0 && newX<8 && newY>0 && newX<8){
+            Pion newPion = partie.getPions()[newX][newY];
+            Pion oldPion = partie.getPions()[posX][posY];
+            if(newPion!=null && isBlack==newPion.isBlack() && oldPion!=null && isBlack!=oldPion.isBlack()){
+                return true;
+            }else if (newPion !=null && isBlack!=newPion.isBlack()){
+                return isFlipPossible(newX, newY, dirX, dirY);
+            }
+        }
+        return false;
     }
 }
