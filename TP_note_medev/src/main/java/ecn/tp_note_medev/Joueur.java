@@ -97,4 +97,30 @@ public class Joueur {
         }
         return false;
     }
+    
+    
+    public void jouer(){
+        ArrayList<int[]> cases = detecterCasesPossibles();
+        if(cases.isEmpty()){
+            canPlay=false;
+            return;
+        }
+        int[] choix = declencherChoixCase(cases);
+        
+        Pion pionJoue= new Pion(isBlack, partie);
+        pionJoue.placer(choix[0], choix[1]);
+        
+        flipper(choix[0],choix[1]);
+    }
+    
+    private int[] declencherChoixCase(ArrayList<int[]> cases){
+        int[] choix = new int[2];
+        choix[0]=0;
+        choix[1]=0;
+        return choix;
+    }
+    
+    private void flipper(int x, int y){
+        
+    }
 }
