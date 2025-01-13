@@ -49,10 +49,12 @@ public class Partie {
     public void setPions(Pion[][] pions) {
         this.pions = pions;
     }
+    
+    
       
     /**
-    * Affiche les toutes les cases avec un caractere adapte à l'element present sur la case
-    */ 
+    * Affiche toutes les cases avec un B pour les pions blancs et un N pour les pions noirs
+    */
     public void afficher(){
         for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
             System.out.println("");
@@ -76,10 +78,18 @@ public class Partie {
         System.out.println();
     }
     
+    /**
+     * Renvoie true si la partie doit se terminer
+     * @return 
+     */
     public boolean verifierFinDePartie(){
         return (verifierPartieBloquee() || verifierPlateauPlein());
     }
     
+    /**
+     * Renvoie true si le plateau n'a plus de place pour des nouveaux pions
+     * @return 
+     */
     public boolean verifierPlateauPlein(){
         for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
             for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
@@ -91,6 +101,10 @@ public class Partie {
         return true;
     }
     
+    /**
+     * Renvoie true si les deux joueurs ne peuvent plus jouer
+     * @return 
+     */
     public boolean verifierPartieBloquee(){
         return (!joueurBlanc.getCanPlay()&&!joueurNoir.getCanPlay());
     }
