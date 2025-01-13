@@ -77,6 +77,10 @@ public class Partie {
     }
     
     public boolean verifierFinDePartie(){
+        return (verifierPartieBloquee() || verifierPlateauPlein());
+    }
+    
+    public boolean verifierPlateauPlein(){
         for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
             for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
                 if (pions[indiceColonne][indiceLigne] == null){
@@ -85,5 +89,9 @@ public class Partie {
             }
         }
         return true;
+    }
+    
+    public boolean verifierPartieBloquee(){
+        return (!joueurBlanc.getCanPlay()&&!joueurNoir.getCanPlay());
     }
 }

@@ -129,13 +129,40 @@ public class PartieTest {
      * Test of verifierFinDePartie method, of class Partie.
      */
     @Test
+    public void testVerifierPlateauPlein() {
+        System.out.println("verifierFinDePartie");
+        // tester plateau de départ
+        Partie instance = new Partie();
+        boolean expResult = false;
+        boolean result = instance.verifierPlateauPlein();
+        assertEquals(expResult, result);
+        
+        // tester plateau plein
+        Pion[][] pions = new Pion[8][8];
+        for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
+            for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
+                pions[indiceColonne][indiceLigne] = new Pion(true, instance);
+            }
+        }
+        instance.setPions(pions);
+        expResult = true;
+        result = instance.verifierPlateauPlein();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of verifierFinDePartie method, of class Partie.
+     */
+    @Test
     public void testVerifierFinDePartie() {
         System.out.println("verifierFinDePartie");
+        // tester plateau de départ
         Partie instance = new Partie();
         boolean expResult = false;
         boolean result = instance.verifierFinDePartie();
         assertEquals(expResult, result);
         
+        // tester plateau plein
         Pion[][] pions = new Pion[8][8];
         for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
             for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
@@ -145,6 +172,19 @@ public class PartieTest {
         instance.setPions(pions);
         expResult = true;
         result = instance.verifierFinDePartie();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of verifierPartieBloquée method, of class Partie.
+     */
+    @Test
+    public void testVerifierPartieBloquee() {
+        System.out.println("verifierPartieBloquee");
+        // tester plateau de départ
+        Partie instance = new Partie();
+        boolean expResult = false;
+        boolean result = instance.verifierPartieBloquee();
         assertEquals(expResult, result);
     }
     
