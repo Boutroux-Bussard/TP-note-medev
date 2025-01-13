@@ -88,7 +88,7 @@ public class Joueur {
     protected Boolean isFlipPossible(int posX,int posY, int dirX, int dirY){
         int newX=posX+dirX;
         int newY=posY+dirY;
-        if(newX>0 && newX<8 && newY>0 && newX<8){
+        if(newX>0 && newX<8 && newY>0 && newY<8){
             Pion newPion = partie.getPions()[newX][newY];
             Pion oldPion = partie.getPions()[posX][posY];
             if(newPion!=null && isBlack==newPion.isBlack() && oldPion!=null && isBlack!=oldPion.isBlack()){
@@ -165,7 +165,7 @@ public class Joueur {
         int newX=x+dirX;
         int newY=y+dirY;
         
-        if(newX<0 && newX>=8 && newY<0 && newX>=8){
+        if(newX<0 && newX>=8 && newY<0 && newY>=8){
             return false;
         }
         
