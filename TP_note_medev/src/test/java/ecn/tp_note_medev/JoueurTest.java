@@ -4,6 +4,7 @@
  */
 package ecn.tp_note_medev;
 
+import java.util.ArrayList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,16 +79,42 @@ public class JoueurTest {
     /**
      * Test of isFlipPossible method, of class Joueur.
      */
+    @Test
     @ParameterizedTest
-    @CsvSource({"true,0,0,1,1,false", "true,0,0,-1,-1,false", "true,3,2,-1,-1,false", "true,3,2,0,1,false","false,3,2,0,1,true","false,2,2,1,1,true"})
+    @CsvSource({"false,0,0,1,1,false", "false,0,0,-1,-1,false", "false,3,2,-1,-1,false", "false,3,2,0,1,false","true,3,2,0,1,true","true,2,2,1,1,true"})
     public void testIsFlipPossible(Boolean isBlack, int posX,int posY, int dirX, int dirY, Boolean expResult) {
         System.out.println("isFlipPossible");
         Partie partie = new Partie();
-        Pion pionBlanc = new Pion(false, partie);
-        pionBlanc.placer(5, 5);
+        Pion pionNoir = new Pion(true, partie);
+        pionNoir.placer(5, 5);
         Joueur instance = new Joueur(partie, isBlack);
         Boolean result = instance.isFlipPossible(posX, posY, dirX, dirY);
         assertEquals(expResult, result);
     }
-    
+
+    /**
+     * Test of detecterCasesPossibles method, of class Joueur.
+     */
+    @Test
+    public void testDetecterCasesPossibles() {
+        System.out.println("detecterCasePossibles");
+        Partie partie= new Partie();
+        Joueur instance = new Joueur(partie, true);
+        ArrayList result = instance.detecterCasesPossibles();
+        assertEquals(result.size(), 4);
+    }
+
+    /**
+     * Test of detecterCase method, of class Joueur.
+     */
+    @Test
+    @ParameterizedTest
+    @CsvSource({"false,0,0,false","false,3,3,false","false,2,2,false","false,3,2,false","true,3,2,true"})
+    public void testDetecterCase(Boolean expResult, int x, int y,Boolean isBlack) {
+        System.out.println("detecterCase");
+        Partie partie= new Partie();
+        Joueur instance = new Joueur(partie, isBlack);
+        Boolean result = instance.detecterCase(x, y);
+        assertEquals(expResult, result);
+    }
 }

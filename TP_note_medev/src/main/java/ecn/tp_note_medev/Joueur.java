@@ -4,6 +4,7 @@
  */
 package ecn.tp_note_medev;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -31,6 +32,46 @@ public class Joueur {
 
     public Boolean getCanPlay() {
         return canPlay;
+    }
+    
+    /**
+     * teste toutes les cases pour savoir si elles sont jouables
+     * @return liste des coordonnees
+     */
+    public ArrayList<int[]> detecterCasesPossibles(){
+        ArrayList<int[]> coordo = new ArrayList<int[]>();
+        for(int x=0; x<8; x++){
+            for(int y=0; y<8; y++){
+                if(detecterCase(x,y)){
+                    int[] coordonee = new int[2];
+                    coordonee[0]=x;
+                    coordonee[1]=y;
+                    coordo.add(coordonee);
+                }
+            }
+        }
+        return coordo;
+    }
+    
+    /**
+     * Teste si une case specifique est jouable
+     * @param x position verticale de la case
+     * @param y position horyzontale de la case
+     * @return true si la case est jouable
+     */
+    protected Boolean detecterCase(int x,int y){
+        if(partie.getPions()[x][y]!=null){
+            return false;
+        }
+        
+        for(int dirX=-1; dirX<2; dirX++){
+            for (int dirY=-1; dirY<2; dirY++){
+                if((dirX!=0 || dirY!=0) && isFlipPossible(x, y, dirX, dirY)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     
