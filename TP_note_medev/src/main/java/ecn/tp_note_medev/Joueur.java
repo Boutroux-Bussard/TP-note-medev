@@ -120,7 +120,7 @@ public class Joueur {
         return choix;
     }
     
-    private void flipper(int x, int y){
+    protected void flipper(int x, int y){
         for(int dirX=-1; dirX<2; dirX++){
             for (int dirY=-1; dirY<2; dirY++){
                 if((dirX!=0 || dirY!=0)){

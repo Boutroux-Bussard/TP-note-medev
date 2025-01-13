@@ -117,4 +117,14 @@ public class JoueurTest {
         Boolean result = instance.detecterCase(x, y);
         assertEquals(expResult, result);
     }
+    
+    @Test
+    public void testFlipper(){
+        System.out.println("flipper");
+        Partie partie = new Partie();
+        Joueur joueurUn = new Joueur(partie, true);
+        joueurUn.flipper(3,2);
+        assertEquals(partie.getPions()[3][3].isBlack(), true);
+        assertEquals(partie.getPions()[3][2].isBlack(),true);
+    }
 }
