@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="testAnt" default="all" basedir=".">
-	<description>This is a Hello World programm</description>
+	<description>This is a building and testing programm for Othello project</description>
 	
 	<target name="all" depends="report-test, build, javadoc" />
 
 	<target name="checkDependencies" description="Check if dependencies are satisfied">
+		<!-- We start by getting the attributes declared in the application.properties file. -->
 		<property file="application.properties" />
 
 		<echo message="Source directory is ${src.location}" />
