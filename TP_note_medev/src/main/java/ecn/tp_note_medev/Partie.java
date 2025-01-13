@@ -19,10 +19,10 @@ public class Partie {
         joueurBlanc = new Joueur(this, false);
         joueurNoir = new Joueur(this, true);
         pions = new Pion[8][8];
-        pions[3][3] = new Pion(true, this);
-        pions[4][4] = new Pion(true, this);
-        pions[3][4] = new Pion(false, this);
-        pions[4][3] = new Pion(false, this);
+        pions[3][3] = new Pion(false, this);
+        pions[4][4] = new Pion(false, this);
+        pions[3][4] = new Pion(true, this);
+        pions[4][3] = new Pion(true, this);
     }
     
 
@@ -54,16 +54,19 @@ public class Partie {
      * Affiche le plateau puis appelle chaque joueur pour qu'il joue. 
      * Verifie a la fin de chaque tour d'un joueur que la partie est finie. 
      */
-    public void tourDeJeu(){
+    public boolean tourDeJeu(){
         afficher();
         // joueurNoir.jouer();
-        verifierFinDePartie();
+        if (verifierFinDePartie()){
+            return true;
+        }
         afficher();
         // joueurBlanc.jouer();
-        verifierFinDePartie();
+        if (verifierFinDePartie()){
+            return true;
+        }
+        return false;
     }
-    
-    
       
     /**
     * Affiche toutes les cases avec un B pour les pions blancs et un N pour les pions noirs
@@ -120,5 +123,36 @@ public class Partie {
      */
     public boolean verifierPartieBloquee(){
         return (!joueurBlanc.getCanPlay()&&!joueurNoir.getCanPlay());
+    }
+    
+    /**
+     * 
+     * @param pions1
+     * @param pions1
+     * @return 
+     */
+    public boolean verifierPlateauxValidAndEquals(Pion[][] pions1, Pion[][] pions2){
+        if(pions1 == null || pions2 == null || pions1.length!=8 || pions1[0].length!=8 || pions2.length!=8 || pions2[0].length!=8){
+            System.out.println("Dimension plateau pas bonne. ");
+            return false;
+        }
+        for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
+            for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
+                if (pions1[indiceColonne][indiceLigne] == null){
+                    if (pions2[indiceColonne][indiceLigne] !=null){
+                        return false;
+                    }
+                    continue;
+                }
+                //si on arrive ici, ca signifie que pion1 n'est pas nul pour ces coordonnées
+                if(pions2[indiceColonne][indiceLigne] == null){
+                    return false;
+                }
+                if (pions1[indiceColonne][indiceLigne].isBlack() != pions2[indiceColonne][indiceLigne].isBlack()){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

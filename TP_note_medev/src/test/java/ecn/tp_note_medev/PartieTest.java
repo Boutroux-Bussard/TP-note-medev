@@ -4,6 +4,8 @@
  */
 package ecn.tp_note_medev;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -185,6 +187,68 @@ public class PartieTest {
         Partie instance = new Partie();
         boolean expResult = false;
         boolean result = instance.verifierPartieBloquee();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of tourDeJeu method, of class Partie.
+     */
+    @Test
+    public void testTourDeJeu() {
+        System.out.println("tourDeJeu");
+        Partie instance = new Partie();
+        
+        // Preparation de l'input du tour
+        String input = "d3" + System.getProperty("line.separator")+"c3"+System.getProperty("line.separator");  
+        InputStream in = new ByteArrayInputStream(input.getBytes()); 
+        System.setIn(in);
+        instance.tourDeJeu();
+        
+        Pion[][] pions = new Pion[8][8];
+        pions[3][3] = new Pion(false, instance);
+        pions[4][4] = new Pion(false, instance);
+        pions[3][4] = new Pion(true, instance);
+        pions[4][3] = new Pion(true, instance);
+        pions[3][2] = new Pion(true, instance);
+        pions[2][2] = new Pion(false, instance);
+        assertTrue(instance.verifierPlateauxValidAndEquals(pions, instance.getPions()));
+    }
+
+    /**
+     * Test of verifierPlateauxEquals method, of class Partie.
+     */
+    @Test
+    public void testVerifierPlateauxValidAndEquals() {
+        System.out.println("verifierPlateauxEquals");
+        Pion[][] pions1 = null;
+        Pion[][] pions2 = null;
+        Partie instance = new Partie();
+        boolean expResult = false;
+        boolean result = instance.verifierPlateauxValidAndEquals(pions1, pions2);
+        assertEquals(expResult, result);
+        
+        pions1 = new Pion[8][7];
+        pions2 = new Pion[8][8];
+        expResult = false;
+        result = instance.verifierPlateauxValidAndEquals(pions1, pions2);
+        assertEquals(expResult, result);
+        
+        pions1 = new Pion[8][8];
+        pions1[3][3] = new Pion(false, instance);
+        pions1[4][4] = new Pion(false, instance);
+        pions1[3][4] = new Pion(true, instance);
+        pions1[4][3] = new Pion(true, instance);
+        pions1[3][2] = new Pion(true, instance);
+        pions1[2][2] = new Pion(false, instance);
+        pions2 = new Pion[8][8];
+        pions2[3][3] = new Pion(false, instance);
+        pions2[4][4] = new Pion(false, instance);
+        pions2[3][4] = new Pion(true, instance);
+        pions2[4][3] = new Pion(true, instance);
+        pions2[3][2] = new Pion(true, instance);
+        pions2[2][2] = new Pion(false, instance);
+        expResult = true;
+        result = instance.verifierPlateauxValidAndEquals(pions1, pions2);
         assertEquals(expResult, result);
     }
     
