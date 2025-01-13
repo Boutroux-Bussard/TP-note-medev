@@ -100,7 +100,9 @@ public class Joueur {
         return false;
     }
     
-    
+    /**
+     * gere le tour d'un joueur (choix de la case et retournage des jetons)
+     */
     public void jouer(){
         ArrayList<int[]> cases = detecterCasesPossibles();
         if(cases.isEmpty()){
@@ -115,6 +117,11 @@ public class Joueur {
         flipper(choix[0],choix[1]);
     }
     
+    /**
+     * le joueur choisi son coup
+     * @param cases les cases possibles
+     * @return le choix du joueur
+     */
     private int[] declencherChoixCase(ArrayList<int[]> cases){
         int[] choix = new int[2];
         choix[0]=0;
@@ -151,6 +158,11 @@ public class Joueur {
         return choix;
     }
     
+    /**
+     * Flippe toutes les cases concernees apres un coup
+     * @param x 
+     * @param y 
+     */
     protected void flipper(int x, int y){
         for(int dirX=-1; dirX<2; dirX++){
             for (int dirY=-1; dirY<2; dirY++){
@@ -161,6 +173,14 @@ public class Joueur {
         }
     }
     
+    /**
+     * Flippe toutes les cases dans une directions donnees si besoin
+     * @param x
+     * @param y
+     * @param dirX
+     * @param dirY
+     * @return 
+     */
     private Boolean flipperDirection(int x,int y, int dirX, int dirY){
         int newX=x+dirX;
         int newY=y+dirY;
