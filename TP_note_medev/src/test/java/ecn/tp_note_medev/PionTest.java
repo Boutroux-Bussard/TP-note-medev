@@ -1,0 +1,78 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ */
+package ecn.tp_note_medev;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ *
+ * @author Quent
+ */
+public class PionTest {
+    
+    public PionTest() {
+    }
+    
+    @BeforeAll
+    public static void setUpClass() {
+    }
+    
+    @AfterAll
+    public static void tearDownClass() {
+    }
+    
+    @BeforeEach
+    public void setUp() {
+    }
+    
+    @AfterEach
+    public void tearDown() {
+    }
+
+    /**
+     * Test of getCouleur method, of class Pion.
+     */
+    @Test
+    public void testGetCouleur() {
+        System.out.println("getCouleur");
+        Partie partie= new Partie();
+        Boolean expResult = false;
+        Pion instance = new Pion(false, partie);
+        Boolean result = instance.getCouleur();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of setCouleur method, of class Pion.
+     */
+    @Test
+    public void testSetCouleur() {
+        System.out.println("setCouleur");
+        Partie partie= new Partie();
+        Boolean expResult = true;
+        Pion instance = new Pion(false, partie);
+        instance.setCouleur(true);
+        Boolean result = instance.getCouleur();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getPartie method, of class Pion.
+     */
+    @Test
+    public void testGetPartie() {
+        System.out.println("getPartie");
+        Partie partie= new Partie();
+        Pion instance = new Pion(false, partie);
+        Partie result = instance.getPartie();
+        assertEquals(partie, result);
+    }
+    
+}
