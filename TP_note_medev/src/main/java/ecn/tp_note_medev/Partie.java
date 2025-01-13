@@ -64,7 +64,7 @@ public class Partie {
                 Pion pionActuel = pions[indiceColonne][indiceLigne];
                 if (pionActuel != null){
                     String couleur = "B";
-                    if (pionActuel.getCouleur()){
+                    if (pionActuel.isBlack()){
                         couleur = "N";
                     }
                     System.out.print(" " + couleur + " ");
