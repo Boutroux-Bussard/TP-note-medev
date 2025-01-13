@@ -155,4 +155,41 @@ public class Partie {
         }
         return true;
     }
+    
+    public void afficherResultat(){
+        int nombreNoir = 0;
+        int nombreBlanc = 0;
+        for (int indiceColonne = 0; indiceColonne < 8; indiceColonne++){
+            for (int indiceLigne = 0; indiceLigne < 8; indiceLigne++){
+                if (pions[indiceColonne][indiceLigne] == null){
+                    continue;
+                }
+                if (pions[indiceColonne][indiceLigne].isBlack()){
+                    nombreNoir += 1;
+                }
+                else{
+                    nombreBlanc += 1;
+                }
+            }
+        }
+        if (nombreNoir > nombreBlanc){
+            System.out.println("Gagnant : noir");
+            System.out.println("Le noir a " + nombreNoir + " pions. ");
+            System.out.println("Le blanc a " + nombreBlanc + " pions. ");
+            return;
+        }
+        if (nombreNoir < nombreBlanc){
+            System.out.println("Gagnant : blanc");
+            System.out.println("Le noir a " + nombreNoir + " pions. ");
+            System.out.println("Le blanc a " + nombreBlanc + " pions. ");
+            return;
+        }
+        if (nombreNoir == nombreBlanc){
+            System.out.println("Egalité");
+            System.out.println("Le noir a " + nombreNoir + " pions. ");
+            System.out.println("Le blanc a " + nombreBlanc + " pions. ");
+            return;
+        }
+                
+    }
 }
